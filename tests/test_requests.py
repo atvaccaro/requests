@@ -672,6 +672,10 @@ class TestRequests:
             post2 = requests.post(url, files={'some': f})
         assert post2.status_code == 200
 
+        with open('Pipfile') as f:
+            post3 = requests.post(url, files={'some': (f, )})
+        assert post3.status_code == 200
+
         post4 = requests.post(url, data='[{"some": "json"}]')
         assert post4.status_code == 200
 
